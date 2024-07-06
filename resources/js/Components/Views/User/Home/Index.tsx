@@ -78,7 +78,7 @@ export default function Index()
         .then((response) => {
             if(response.data.success)
             {
-                console.log("Success");
+                alert("Successfully updated");
             }
             else
             {
