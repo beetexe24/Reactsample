@@ -7,6 +7,7 @@ export default function Index()
 {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [userType, setUserType] = useState('');
     const [errors, setErrors] = useState('');
 
     useEffect(() => {
@@ -33,6 +34,7 @@ export default function Index()
             {
                 setName(response.data.data.name);
                 setEmail(response.data.data.email);
+                setUserType(response.data.data.user_type);
             }
             else
             {
@@ -80,10 +82,17 @@ export default function Index()
     return (
         <div className="p-4 border-2 border-gray-200 border-solid rounded-lg mt-14 relative">
             <div className="w-full text-center">
-                <span className="text-3xl font-bold">Welcome Administrator</span>
+                <span className="text-3xl font-bold">Welcome&nbsp;
+                    {
+                        (userType == 'User')
+                        ? 'User'
+                        : 'Admin'
+                    }
+                </span>
             </div>
             <div className="max-w-lg m-auto p-4 border-2 border-gray-200 border-solid rounded-lg mt-14 relative">
-                <form className="space-y-6" onSubmit={updateInformation}>
+                <span className="text-lg font-bold">Profile Information</span>
+                <form className="space-y-6 mt-5" onSubmit={updateInformation}>
                     <div className="mb-6">
                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                         <input type="textbox" onChange={updateName} value={name} name="name" id="name" placeholder="Your name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
