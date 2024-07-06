@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { initFlowbite } from "flowbite";
 import Ebutton from "../../../Elements/Ebutton";
 import APIrequest from "../../../APIrequest";
+import axios from "axios";
 
 export default function Index()
 {
@@ -15,7 +16,8 @@ export default function Index()
 
         async function fetchData(){
             await Promise.all([
-                fetchInformation()
+                fetchInformation(),
+                getIPaddress()
             ])
         }
 
@@ -77,6 +79,16 @@ export default function Index()
         .catch((error) => {
             console.log(error);
         })
+    }
+
+    const getIPaddress = () => {
+        axios.get('https://api.ipify.org?format=json')
+        .then((response) => {
+            console.log(response.data.ip);
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
     }
 
     return (
