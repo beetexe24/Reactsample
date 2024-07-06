@@ -1,8 +1,11 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useLayoutEffect, useState } from "react";
 import { initFlowbite } from "flowbite";
 import Ebutton from "../../../Elements/Ebutton";
 import APIrequest from "../../../APIrequest";
 import axios from "axios";
+import Geo from "./Geo";
+
+
 
 export default function Index()
 {
@@ -10,6 +13,8 @@ export default function Index()
     const [email, setEmail] = useState('');
     const [userType, setUserType] = useState('');
     const [errors, setErrors] = useState('');
+    const [latitude, setLatitude] = useState<number>(1);
+    const [longitude, setLongitude] = useState<number>(1);
 
     useEffect(() => {
         initFlowbite();
@@ -23,6 +28,10 @@ export default function Index()
 
         fetchData();
     }, []);
+
+    useLayoutEffect(() => {
+        getIPaddress();
+    });
 
     const updateName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
@@ -84,7 +93,13 @@ export default function Index()
     const getIPaddress = () => {
         axios.get('https://api.ipify.org?format=json')
         .then((response) => {
-            console.log(response.data.ip);
+            const ip = response.data.ip;
+
+            axios.get(`http://www.geoplugin.net/json.gp?ip=${ip}`)
+            .then((response) => {
+                setLatitude(response.data.geoplugin_latitude);
+                setLongitude(response.data.geoplugin_longitude);
+            })
         })
         .catch(error => {
             console.log('Error:', error);
@@ -118,7 +133,21 @@ export default function Index()
                         <p className="text-md font-semibold text-red-700 whitespace-pre-line">{errors}</p>
                     </div>
                 </form>
+
+                
             </div>
+
+            
+            {
+                (latitude !== 1)
+                ? <Geo latitude={latitude} longitude={longitude} />
+                : ''
+            }
+            
+
+            
+
+            
         </div>
         
     )
