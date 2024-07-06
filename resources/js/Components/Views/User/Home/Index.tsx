@@ -3,7 +3,12 @@ import { initFlowbite } from "flowbite";
 import Ebutton from "../../../Elements/Ebutton";
 import APIrequest from "../../../APIrequest";
 import axios from "axios";
-import Geo from "./Geo";
+import {
+    MapContainer,
+    TileLayer,
+    Marker,
+  } from 'react-leaflet';
+  import "leaflet/dist/leaflet.css";
 
 
 
@@ -140,7 +145,14 @@ export default function Index()
             
             {
                 (latitude !== 1)
-                ? <Geo latitude={latitude} longitude={longitude} />
+                ? 
+                    <MapContainer center={[latitude, longitude]} zoom={17} scrollWheelZoom={true} style={{ height: "310px" }}>
+                        <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <Marker position={[latitude, longitude]}></Marker>
+                    </MapContainer>
                 : ''
             }
             
