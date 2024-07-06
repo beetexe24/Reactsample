@@ -78,6 +78,7 @@ export default function Index()
         .then((response) => {
             if(response.data.success)
             {
+                localStorage.setItem("auth-name", name);
                 alert("Successfully updated");
             }
             else
