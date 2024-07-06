@@ -27,7 +27,7 @@ APIrequest
             
             if(tab !== 'login')
             {
-                //window.location.href = "/login";
+                window.location.href = "/login";
             }
         }
     });
