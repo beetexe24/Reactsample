@@ -1,7 +1,7 @@
 <h1 align="center">Assessment</h1>
 
 ## OVERVIEW
-This is for assessment that displays location of the user and it's profile information.
+This is simple application displays location of the user and it's profile information.
 
 ## REQUIREMENTS
 * PHP 8.1.17 or higher. Use laragon `https://laragon.org/download/` or xampp `https://www.apachefriends.org/download.html`
