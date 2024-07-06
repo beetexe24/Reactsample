@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import Ebutton from "../../../Elements/Ebutton";
-import Etextbox from "../../../Elements/Etextbox";
 
 
 
@@ -51,11 +50,11 @@ export default function Login()
                     </div>
                     <div>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-                        <Etextbox handleOnchange={updateCredentials} type="email" name="email" id="email" background="blue" border="gray" color="gray" textSize="sm" focusRingBackground="blue" placeHolder="Your email address" required={true}></Etextbox>
+                        <input type="email" onChange={updateCredentials} name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="name@company.com" required />
                     </div>
                     <div>
                         <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
-                        <Etextbox handleOnchange={updateCredentials} type="password" name="password" id="password" background="blue" border="gray" color="gray" textSize="sm" focusRingBackground="blue" placeHolder="••••••••••" required={true}></Etextbox>
+                        <input type="password" onChange={updateCredentials} name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                     </div>
 
                     <Ebutton label="Login to your account" color="white" background="blue" hoverBackground="blue" fontSize="medium" textSize="sm"></Ebutton>

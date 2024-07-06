@@ -25,7 +25,7 @@ APIrequest
             let data = currentLocation.split("/");
             let tab = data[3];
             
-            if(tab !== 'login')
+            if(tab !== 'login' && tab !== 'create-account')
             {
                 window.location.href = "/login";
             }
