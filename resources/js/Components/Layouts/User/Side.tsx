@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import APIrequest from "../../APIrequest";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { AuthContext, useAuthContext } from "../../Contexts/AuthContext";
 
 export default function Side()
 {
     const [Selected, setSelectedData] = useState<string | null>('myapplication');
+    const authCredentials = useAuthContext();
 
     useEffect(() => {
         getCurrentLocation();
@@ -65,10 +67,10 @@ export default function Side()
                             <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow" id="dropdown-user">
                             <div className="px-4 py-3" role="none">
                                 <p className="text-sm text-gray-900" role="none">
-                                {localStorage.getItem("auth-name")}
+                                {authCredentials.auth_name}
                                 </p>
                                 <p className="text-sm font-medium text-gray-900 truncate" role="none">
-                                {localStorage.getItem("auth-email")}
+                                {authCredentials.auth_email}
                                 </p>
                             </div>
                             <ul className="py-1" role="none">
